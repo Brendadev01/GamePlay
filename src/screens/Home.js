@@ -2,7 +2,8 @@ import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'rea
 import CategoryCard from '../components/CategoryCard';
 import MatchCard from '../components/MatchCard';
 
-export default function Home() {
+// Adicionei { navigation } aqui para poder navegar
+export default function Home({ navigation }) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       
@@ -48,6 +49,7 @@ export default function Home() {
           <Text style={styles.matchesTotal}>Total 6</Text>
         </View>
 
+        {/* Item 1 - Lendários */}
         <MatchCard
           cover={require('../../assets/game-lol.png')}
           title="Lendários"
@@ -55,8 +57,16 @@ export default function Home() {
           category="Ranqueada"
           status="anfitriao"
           hasSeparator={true}
+          // AQUI ESTÁ A MÁGICA: Ao clicar, vai para Details e leva os dados
+          onPress={() => navigation.navigate('Details', {
+            title: 'Lendários',
+            category: 'Ranqueada',
+            date: '18/06 às 21:00h',
+            cover: require('../../assets/game-lol.png')
+          })}
         />
 
+        {/* Item 2 - Yeah, boy */}
         <MatchCard
           cover={require('../../assets/game-rdr2.png')}
           title="Yeah, boy"
@@ -64,8 +74,15 @@ export default function Home() {
           category="Diversão"
           status="visitante"
           hasSeparator={true}
+          onPress={() => navigation.navigate('Details', {
+            title: 'Yeah, boy',
+            category: 'Diversão',
+            date: '23/06 às 19:00h',
+            cover: require('../../assets/game-rdr2.png')
+          })}
         />
 
+        {/* Item 3 - Rumo ao topo */}
         <MatchCard
           cover={require('../../assets/game-csgo.png')}
           title="Rumo ao topo"
@@ -73,8 +90,15 @@ export default function Home() {
           category="1x1"
           status="anfitriao"
           hasSeparator={true}
+          onPress={() => navigation.navigate('Details', {
+            title: 'Rumo ao topo',
+            category: '1x1',
+            date: '20/06 às 09:00h',
+            cover: require('../../assets/game-csgo.png')
+          })}
         />
 
+        {/* Item 4 - Bora queimar tudo */}
         <MatchCard
           cover={require('../../assets/game-apex.png')}
           title="Bora queimar tudo"
@@ -82,8 +106,15 @@ export default function Home() {
           category="Ranqueada"
           status="anfitriao"
           hasSeparator={true}
+          onPress={() => navigation.navigate('Details', {
+            title: 'Bora queimar tudo',
+            category: 'Ranqueada',
+            date: '20/06 às 14:20h',
+            cover: require('../../assets/game-apex.png')
+          })}
         />
 
+        {/* Item 5 - Valorosos */}
         <MatchCard
           cover={require('../../assets/game-valorant.png')}
           title="Valorosos"
@@ -91,6 +122,12 @@ export default function Home() {
           category="Diversão"
           status="anfitriao"
           hasSeparator={false}
+          onPress={() => navigation.navigate('Details', {
+            title: 'Valorosos',
+            category: 'Diversão',
+            date: '18/06 às 21:00h',
+            cover: require('../../assets/game-valorant.png')
+          })}
         />
       </View>
 

@@ -1,6 +1,7 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function MatchCard({ cover, title, date, category, status, hasSeparator }) {
+// Adicionei 'onPress' aqui nas props
+export default function MatchCard({ cover, title, date, category, status, hasSeparator, onPress }) {
   const isHost = status === 'anfitriao';
   const statusColor = isHost ? '#E51C44' : '#32BD50';
   const statusText = isHost ? 'Anfitrião' : 'Visitante';
@@ -8,8 +9,13 @@ export default function MatchCard({ cover, title, date, category, status, hasSep
     ? require('../../assets/icon-anfitriao.png') 
     : require('../../assets/icon-visitante.png');
 
+  // Troquei o View principal por TouchableOpacity e adicionei onPress e activeOpacity
   return (
-    <View style={styles.container}>
+    <TouchableOpacity 
+      style={styles.container} 
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
       {/* Camada da Esquerda: Capa do Jogo */}
       <Image 
         source={cover} 
@@ -38,7 +44,6 @@ export default function MatchCard({ cover, title, date, category, status, hasSep
           </View>
 
           <View style={styles.rowItem}>
-            {/* Ícone primeiro, texto depois */}
             <Image 
               source={statusIcon} 
               style={styles.smallIcon} 
@@ -51,7 +56,7 @@ export default function MatchCard({ cover, title, date, category, status, hasSep
 
       {/* Linha Separadora */}
       {hasSeparator && <View style={styles.separator} />}
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -108,7 +113,7 @@ const styles = StyleSheet.create({
   statusText: {
     fontFamily: 'Inter-Regular',
     fontSize: 13,
-    marginLeft: 6, // Espaço entre o ícone e o texto
+    marginLeft: 6,
   },
   smallIcon: {
     width: 16,
