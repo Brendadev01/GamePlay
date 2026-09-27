@@ -1,20 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { useFonts } from 'expo-font';
+import Routes from './src/routes';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'Rajdhani-Bold': require('./assets/fonts/Rajdhani-Bold.ttf'),
+    'Rajdhani-Medium': require('./assets/fonts/Rajdhani-Medium.ttf'), // Adicionado para o "Olá,"
+    'Inter-Regular': require('./assets/fonts/Inter_18pt-Regular.ttf'),
+    'Inter-Medium': require('./assets/fonts/Inter_18pt-Medium.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <StatusBar style="light" />
+      <Routes />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
