@@ -2,14 +2,14 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
     <LinearGradient
       colors={['#0E1647', '#0A1033']}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea} edges={['top']}>
-        
+
         {/* Container que segura as duas imagens empilhadas */}
         <View style={styles.headerContainer}>
           {/* Camada de baixo: As faixas */}
@@ -18,7 +18,7 @@ export default function Login() {
             style={styles.faixas}
             resizeMode="cover"
           />
-          
+
           {/* Camada de cima: O personagem */}
           <Image
             source={require('../../assets/personagem.png')}
@@ -38,16 +38,19 @@ export default function Login() {
         </Text>
 
         {/* Botão Discord */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}
+        >
           <Image
             source={require('../../assets/discord-icon.png')}
             style={styles.icon}
             resizeMode="contain"
           />
-          
+
           {/* Linha vertical separadora */}
           <View style={styles.separator} />
-          
+
           <Text style={styles.buttonText}>Entrar com Discord</Text>
         </TouchableOpacity>
 
