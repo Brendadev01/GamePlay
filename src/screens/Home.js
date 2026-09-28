@@ -23,7 +23,10 @@ export default function Home({ navigation }) {
             <Text style={styles.subtitle}>Hoje é dia de vitória</Text>
           </View>
 
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate('Agendar')}
+          >
             <Text style={styles.addButtonText}>+</Text>
           </TouchableOpacity>
         </View>
